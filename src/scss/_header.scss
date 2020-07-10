@@ -1,0 +1,154 @@
+.header {
+    background: url('/img/header__background.jpg') no-repeat center; 
+    box-sizing: border-box;
+    padding-top: 50px;
+    min-height: 750px;
+    
+    // ----------------------
+    // верхняя часть header'a
+    //       ⬇⬇⬇
+
+
+    // borgar by default hidden and removed from the flow
+    &__nav_burger {
+        display: none;
+        border: none;
+        background: none;
+        padding: 0;
+        color: #fff;
+        font-size: 18px;
+        &:hover {
+            color: #061e37;
+    }
+    }
+    &__nav_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: calc(100% - 500px);
+    }
+    &__top_panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    &__links_list {
+        display: flex;
+        justify-content: space-between;;
+        width: 445px;
+        margin-right: 20%;
+    }
+    &__links_item {
+        color: #ffffff;
+        font-family: RalewayBold;
+        font-size: 15px;
+        &:hover { color: #061e37 }
+    }
+    &__sign_up_link { display: none; }
+    &__sign_up_btn {
+        width: 80px;
+        height: 25px;
+        background: none;
+        border: #ffffff solid 1px;
+        border-radius: 2px;
+
+        font-family: RalewayRegular;
+        font-size: 12px;
+        color: #ffffff;
+        text-transform: lowercase;
+        
+        &:hover {
+            color: #061e37;
+            border-color: #061e37;
+        }
+    }
+
+    // ---------------------
+    // нижняя часть header'a
+    //       ⬇⬇⬇
+
+    &__buy_now {
+        margin-top: calc(100% - 1286px); // 154px
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    &__big_text {
+        font-size: 55px;
+        font-family: RalewayExtraBold;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+    &__small_text {
+        font-size: 18px;
+        font-family: RalewayRegular;
+        line-height: 2;
+
+        margin-top: 5px;
+    }
+
+    &__btns_container {
+        margin-top: 29px;
+    }
+    &__btn_buy_now {
+        @include big_btn(#061e37, #ffffff);
+        margin-right: 30px;
+        &:hover {
+            background: #ffffff;
+            color: #061e37;
+        }
+    }
+    &__btn_try {
+        @include big_btn(#ffffff, #061e37, 160px);
+        &:hover {
+            background: #061e37;
+            color: #ffffff;
+        }
+    }
+
+    // ------------
+    // видео справа
+    //    ⬇⬇⬇
+
+    &__video_container {
+        width: 600px;
+        height: 320px;
+        border: 1px solid black;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.3);
+        background: url('/img/video__background.png') no-repeat -1px -1px;
+        position: relative;
+        top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    &__video_play_btn {
+        color: #ffffff;
+        font-size: 10px;
+
+        width: 60px;
+        height: 60px;
+        background: #061e37;
+        border: 1px solid #061e37;
+        border-radius: 5px;
+        padding: 0;
+    }
+    &__video_container:hover &__video_play_btn {
+        color: #061e37;
+        background: #ffffff;
+    }
+    &__watch_text {
+        font-size: 12px;
+        font-family: RalewayBold;
+        color: #061e37;
+        text-transform: uppercase;
+        margin-top: 20px;
+    }
+}

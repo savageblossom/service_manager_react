@@ -1,0 +1,26 @@
+.loginForm {
+    background: #17cdce;
+    height: 100vh;
+    font-family: RalewayRegular;
+    display: flex;
+    align-items: center;
+
+    h1, p {
+        text-align: center;
+    }
+    h1 {
+        font-size: 36px;
+    }
+
+
+    &__form {
+        max-width: 450px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 15px;
+    }
+    label {
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,30 @@
+// Global classes
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+
+// Load reset defaults
+@import './reset.scss';
+
+// Fonts
+@import './fonts.scss';
+
+// Mixins
+@import './_mixins';
+
+// Main styles
+@import './header';
+@import './get_started';
+@import './stats';
+@import './services';
+@import './testimonials';
+@import './our_team';
+@import './contact_us';
+@import './footer';
+
+// Load Responsive rules
+@import './responsive';
