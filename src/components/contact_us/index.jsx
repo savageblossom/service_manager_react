@@ -55,10 +55,12 @@ const ContactUs = () => {
                         <input type="text" className="contact_us__form_input" id="lastName"  name="lastName"  placeholder="Last Name" />
                     </div>
                     <div className="contact_us__form_input_container">
-                        <input type="text" className="contact_us__form_input" id="email"     name="email"     placeholder="Email" />
+                        <input type="text" className="contact_us__form_input" id="email"     name="email"     
+                        placeholder="Email (e.g. you@mail.com)" />
                     </div>
                     <div className="contact_us__form_input_container">
-                        <input type="text" className="contact_us__form_input" id="tel"       name="phone"     placeholder="Phone" />
+                        <input type="text" className="contact_us__form_input" id="tel"       name="phone"     
+                        placeholder="Phone (e.g. 7(666)228-13-37)" />
                     </div>
                     <div className="contact_us__form_input_container contact_us__form_input_container--textarea">
                         <textarea className="contact_us__form_input contact_us__form_input--textarea " 

@@ -19,8 +19,25 @@
         background: #fff;
         padding: 30px;
         border-radius: 15px;
+        display: flex;
+        flex-direction: column;
     }
     label {
         margin: 10px 0;
+    }
+    &__btn {
+        align-self: center;
+        padding: 10px 20px;
+
+    }
+    &__spoiler {
+        background: black;
+        color: black;
+        display: inline-block;
+        padding: 2px;
+        &:hover {
+            color: white;
+            cursor: pointer;
+        }
     }
 }

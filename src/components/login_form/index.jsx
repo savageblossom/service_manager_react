@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 import './login_form.scss';
 
 
-const LoginForm = () => {
-    
+const LoginForm = props => {
+
+    const [logged, setLogged] = useState('');
+
     const logging = () => {
         if( ($('#username').val() == 'admin') && ($('#password').val() == 666) ) {
-            localStorage.setItem('logged', true)
+            localStorage.setItem('logged', 'true');
+            setLogged('true');
         }
     }
 
     useEffect(() => {
-        localStorage.setItem('logged', false);
+        props.isLogged(logged)
     })
 
     return (
@@ -29,14 +32,13 @@ const LoginForm = () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Username</label>
-                        <input type="text" className="form-control" id="username" aria-describedby="emailHelp" />
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <input type="text" className="form-control" id="username" placeholder="admin" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleInputPassword1">Password</label>
-                        <input type="password" className="form-control" id="password" />
+                        <input type="password" className="form-control" id="password" placeholder="666" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="loginForm__btn btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

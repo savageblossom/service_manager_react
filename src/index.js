@@ -11,14 +11,11 @@ import * as serviceWorker from './serviceWorker';
 // import main (App) component
 import App from './components/app';
 
-// import login form component
-import LoginForm from './components/login_form';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    { 
-      localStorage.getItem('logged') == 'true' ?  <App /> : <LoginForm/>
-    }
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
