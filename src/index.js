@@ -8,37 +8,17 @@ import './scss/index.scss';
 
 import * as serviceWorker from './serviceWorker';
 
-
+// import main (App) component
+import App from './components/app';
 
 // import login form component
 import LoginForm from './components/login_form';
 
-// import main components
-import Header from './components/header';
-import GetStarted from './components/get_started';
-import Stats from './components/stats';
-import Services from './components/services';
-import Testimonials from './components/testimonials';
-import OurTeam from './components/our_team';
-import ContactUs from './components/contact_us';
-import Footer from './components/footer';
-
-
-const checkLogged = (isLogged) => {
-    console.log(isLogged);
-}
-
 ReactDOM.render(
   <React.StrictMode>
-    <LoginForm checkLogged={this.checkLogged} />
-    {/* <Header />
-    <GetStarted />
-    <Stats />
-    <Services />
-    <Testimonials />
-    <OurTeam />
-    <ContactUs />
-    <Footer /> */}
+    { 
+      localStorage.getItem('logged') == 'true' ?  <App /> : <LoginForm/>
+    }
   </React.StrictMode>,
   document.getElementById('root')
 );
