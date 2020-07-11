@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import $ from 'jquery';
 
 const Header = () => {
     const toggleMenu = () => {
         let selectedBurgerTarget = $('#header__toggle_menu_target'),
         isToggled = true;
-        
+
         if(selectedBurgerTarget.css('display') == 'none') isToggled = false;
         if(!isToggled) selectedBurgerTarget.css('display', 'flex');
         else selectedBurgerTarget.css('display', 'none');
     }
-
-    useEffect(() => {
-        
-    })
-
 
     return (
         <header className="header">

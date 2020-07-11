@@ -25,7 +25,7 @@ const App = () => {
     useEffect(() => {
         if(localStorage.getItem('logged') === 'true') setLogged('true')
         else setLogged('false')
-    })
+    }, [])
 
     // Conditional rendering
     if(logged === 'false') {
