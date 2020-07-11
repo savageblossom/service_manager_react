@@ -19,7 +19,6 @@ const App = () => {
     // Callback func for getting logged value from children component
     const getLoginInfo = (isLogged) => {
         setLogged(isLogged);
-        console.log(logged)
     }
 
     // Check localStorage upon mounting

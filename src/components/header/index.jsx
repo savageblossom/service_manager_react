@@ -2,15 +2,17 @@ import React, { useEffect } from 'react';
 import $ from 'jquery';
 
 const Header = () => {
-    useEffect(() => {
-        $('#header__toggle_menu').on('click', () => {
-            let selectedBurgerTarget = $('#header__toggle_menu_target'),
-                isToggled = true;
+    const toggleMenu = () => {
+        let selectedBurgerTarget = $('#header__toggle_menu_target'),
+        isToggled = true;
+        
+        if(selectedBurgerTarget.css('display') == 'none') isToggled = false;
+        if(!isToggled) selectedBurgerTarget.css('display', 'flex');
+        else selectedBurgerTarget.css('display', 'none');
+    }
 
-            if(selectedBurgerTarget.css('display') == 'none') isToggled = false;
-            if(!isToggled)  selectedBurgerTarget.css('display', 'flex');
-            else selectedBurgerTarget.css('display', 'none');
-        })
+    useEffect(() => {
+        
     })
 
 
@@ -21,7 +23,7 @@ const Header = () => {
                 <a className="header__logo" href="">
                     <img src="/img/header__logo.png" alt="" width="180" height="30" />
                 </a>
-                <button id="header__toggle_menu" className="header__nav_burger">
+                <button id="header__toggle_menu" className="header__nav_burger" onClick={e => { toggleMenu() }}>
                     <i className="fas fa-bars"></i>
                 </button>
                 <div id="header__toggle_menu_target" className="header__nav_container">
