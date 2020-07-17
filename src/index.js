@@ -5,18 +5,22 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import './scss/index.scss';
-
+import './theme';
 // import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
 
 import AuthStore from './stores/AuthStore';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './theme';
 
 export const AuthStoreContext = React.createContext();
 
 ReactDOM.render(
   <AuthStoreContext.Provider value={AuthStore}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </AuthStoreContext.Provider>,
   document.getElementById('root')
 );

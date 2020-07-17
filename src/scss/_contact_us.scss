@@ -34,11 +34,13 @@
     // Форма
     &__form {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         margin-top: 25px;
         color: #061e37;
         font-size: 14px;
+        max-width: 600px;
 
         // Submit btn
         &_submit {

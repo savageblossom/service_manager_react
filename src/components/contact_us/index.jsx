@@ -1,46 +1,15 @@
 import React, { useEffect } from 'react';
-
-import { validateEmail, validatePhone } from './validators';
-import printError from './printError';
-
-import $ from 'jquery';
+import { FormControl, CssBaseline } from '@material-ui/core';
 
 const ContactUs = () => {
-    useEffect(() => {
-        $('#contactForm').on('submit', () => {
-            // Take certain inputs
-            const formInputList = $('#firstName, #lastName, #tel, #email, #message');
-        
-            // Check inputs
-            for(const [k, v] of Object.entries(formInputList)) {
-                let inputId = '#'+v.id;
-
-                // Check every input in form for emptiness
-                if(v.value == '') printError('contact_us__error', 'Please fill in the blank field', inputId)
-
-                // Validate e-mail input
-                else if(inputId == '#email' && !validateEmail(v.value)) printError('contact_us__error', 'Please type e-mail correctly', inputId)
-
-                // Validate phone input
-                else if(inputId == '#tel' && !validatePhone(v.value)) printError('contact_us__error', 'Please type phone number correctly', inputId)
-                else {
-                    $(inputId).prev().remove()
-                }
-            }
-            
-            if($('.contact_us__error').length == 0) {
-                alert('Письмо отправлено успешно!');
-                console.log(formInputList)
-            }
-        })
-    })
-
     return (
+        <>
+        <CssBaseline />
         <section className="contact_us">
             <div className="container">
                 <h1 className="contact_us__heading">Contact Us</h1>
                 <p className="contact_us__caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-                <form id="contactForm" className="contact_us__form" action="#" onSubmit={e => {e.preventDefault();}}>
+                <form className="contact_us__form">
                     <div className="contact_us__form_input_container">
                         <input type="text" className="contact_us__form_input" id="firstName" name="firstName" placeholder="First Name" />
                     </div>
@@ -67,6 +36,7 @@ const ContactUs = () => {
                 </form>
             </div>
         </section>
+        </>
     )
 }
 
