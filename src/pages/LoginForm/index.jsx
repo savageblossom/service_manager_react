@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import $ from 'jquery';
+import React, { useState, useContext } from 'react';
 import './login_form.scss';
-import printError from '../contact_us/printError';
 
-const LoginForm = props => {
-    const [isAuth, setIsAuth] = useState(false);
+import {AuthStoreContext} from '../../index';
+
+const LoginForm = ({ history }) => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const store = useContext(AuthStoreContext);
 
     const validate = () => login && login == 'admin' && password && password == 666
-    
 
-    const logging = (e) => {
+    const logging = e => {
         e.preventDefault();
-        if(validate()) {
-            localStorage.setItem('logged', true);
-            setIsAuth('true');
-        }
+        validate() 
+        ? store.performAuth()
+        : alert('Invalid Credentials!')
+        history.push("/home")
     }
 
     return (

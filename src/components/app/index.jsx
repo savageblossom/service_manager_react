@@ -1,41 +1,40 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useContext } from 'react';
 
-// import login form component
-import LoginForm from '../login_form';
+// components to render form component
+import LoginForm from '../../pages/LoginForm';
+import MainPage from '../../pages/MainPage';
+import NotFound from '../../pages/NotFound';
 
-// import main components
-import Header from '../header';
-import GetStarted from '../get_started';
-import Stats from '../stats';
-import Services from '../services';
-import Testimonials from '../testimonials';
-import OurTeam from '../our_team';
-import ContactUs from '../contact_us';
-import Footer from '../footer';
+import { ProtectedRoute } from '../../routes/ProtectedRoute';
 
-const App = () => {
-    const [logged, setLogged] = useState(false);
+// store context
+import {AuthStoreContext} from '../../index';
 
-    // Check localStorage upon mounting
-    useEffect(() => setLogged(!!localStorage.getItem('logged')), [])
+// mobx observer
+import {observer} from 'mobx-react';
 
-    // Conditional rendering
-    if(!logged) return <LoginForm setLogged={ setLogged } />
-    
-    else {
-        return (
-            <>
-                <Header />
-                <GetStarted />
-                <Stats />
-                <Services />
-                <Testimonials />
-                <OurTeam />
-                <ContactUs />
-                <Footer />
-            </>
-        )
-    }
-}
+// router
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from 'react-router-dom';
+
+const App = observer(() => {
+    const store = useContext(AuthStoreContext);
+    useEffect(() => {
+        localStorage.getItem("auth") === null && localStorage.setItem("auth", "false")
+    })
+
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/" component={LoginForm} />
+                <ProtectedRoute exact path="/home" component={MainPage} />
+                <Route path="*" component={NotFound} />
+            </Switch>
+        </Router>
+    )
+})
 
 export default App;

@@ -6,21 +6,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import './scss/index.scss';
 
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
-// import main (App) component
-import App from './components/app';
+import App from './components/App';
 
+import AuthStore from './stores/AuthStore';
 
+export const AuthStoreContext = React.createContext();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <AuthStoreContext.Provider value={AuthStore}>
     <App />
-  </React.StrictMode>,
+  </AuthStoreContext.Provider>,
   document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
