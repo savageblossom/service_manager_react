@@ -1,18 +1,11 @@
 import React, { useEffect } from 'react';
 
 import { validateEmail, validatePhone } from './validators';
+import printError from './printError';
 
 import $ from 'jquery';
 
 const ContactUs = () => {
-
-    const printError = (errClassName, message, element) => {
-        if(($(element).prev().hasClass(errClassName))) { $(element).prev().remove() }
-        if(!($(element).prev().hasClass(errClassName))) {
-            $(element).before($(`<div class="${ errClassName }">${ message }</div>`))
-        }
-    }
-
     useEffect(() => {
         $('#contactForm').on('submit', () => {
             // Take certain inputs

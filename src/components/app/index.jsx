@@ -14,26 +14,17 @@ import ContactUs from '../contact_us';
 import Footer from '../footer';
 
 const App = () => {
-    const [logged, setLogged] = useState('');
-
-    // Callback func for getting logged value from children component
-    const getLoginInfo = (isLogged) => {
-        setLogged(isLogged);
-    }
+    const [logged, setLogged] = useState(false);
 
     // Check localStorage upon mounting
-    useEffect(() => {
-        if(localStorage.getItem('logged') === 'true') setLogged('true')
-        else setLogged('false')
-    })
+    useEffect(() => setLogged(!!localStorage.getItem('logged')), [])
 
     // Conditional rendering
-    if(logged === 'false') {
-        return <LoginForm isLogged={ getLoginInfo } />
-    }
+    if(!logged) return <LoginForm setLogged={ setLogged } />
+    
     else {
         return (
-            <Fragment>
+            <>
                 <Header />
                 <GetStarted />
                 <Stats />
@@ -42,7 +33,7 @@ const App = () => {
                 <OurTeam />
                 <ContactUs />
                 <Footer />
-            </Fragment>
+            </>
         )
     }
 }

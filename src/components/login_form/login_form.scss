@@ -12,6 +12,13 @@
         font-size: 36px;
     }
 
+    &__error {
+        color: red;
+        position: absolute;
+        margin: -27px 0 0 192px;
+        display: block;
+        font-family: RalewayRegular;
+    }
 
     &__form {
         max-width: 450px;
