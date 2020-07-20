@@ -11,9 +11,12 @@
 
     // borgar by default hidden and removed from the flow
     &__nav_burger {
-        display: none;
+        // display: none;
         border: none;
         background: none;
+        width: 14px;
+        height: 19px;
+        display: inline-block;
         padding: 0;
         color: #fff;
         font-size: 18px;
@@ -26,6 +29,9 @@
         justify-content: space-between;
         align-items: center;
         min-width: calc(100% - 500px);
+        & .visible {
+            display: flex;
+        }
     }
     &__top_panel {
         display: flex;

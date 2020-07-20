@@ -1,7 +1,7 @@
 import { decorate, observable, action } from "mobx";
 
 class Store { 
-    auth = localStorage.getItem("auth");
+    auth = JSON.parse(localStorage.getItem("auth"));
     
     performAuth = () => {
         this.auth = "true";
@@ -20,5 +20,5 @@ decorate(storeInstance, {
     auth: observable,
     performAuth: action
 })
-
+ 
 export default storeInstance;

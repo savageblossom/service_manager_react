@@ -6,21 +6,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import './scss/index.scss';
 import './theme';
+
 // import * as serviceWorker from './serviceWorker';
 
-import App from './components/App';
-
-import AuthStore from './stores/AuthStore';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './theme';
 
+// app itself
+import App from './components/App';
+
+// mobx AUTH store
+import AuthStore from './stores/AuthStore';
+
+// mobx UI store
+import UIStore from './stores/UIStore';
+
+// context exports
 export const AuthStoreContext = React.createContext();
+export const UIStoreContext = React.createContext();
 
 ReactDOM.render(
   <AuthStoreContext.Provider value={AuthStore}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <UIStoreContext.Provider value={UIStore}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </UIStoreContext.Provider>
   </AuthStoreContext.Provider>,
   document.getElementById('root')
 );

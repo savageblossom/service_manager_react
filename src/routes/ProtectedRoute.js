@@ -9,17 +9,17 @@ export const ProtectedRoute = ({
     const store = useContext(AuthStoreContext);
     return (
         <Route {...rest} render={props => {
-                if (store.auth == "true") {
+                if (store.auth) {
                     return <Component {...props} />;
                 } else {
                     return (
-                        <Redirect
-                        to={{
-                            pathname: "/",
-                            state: {
-                            from: props.location
-                            }
-                        }}
+                            <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: {
+                                from: props.location
+                                }
+                            }}
                         />
                     );
                 }
