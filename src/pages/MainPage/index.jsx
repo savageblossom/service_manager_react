@@ -12,14 +12,14 @@ import Footer from '../../components/footer';
 export default function MainPage() {
     return (
             <>
-                <Header />
+                {/* <Header />
                 <GetStarted />
-                <Stats />
+                <Stats /> */}
                 <Services />
-                <Testimonials />
+                {/* <Testimonials />
                 <OurTeam />
                 <ContactUs />
-                <Footer />
+                <Footer /> */}
             </>
     )
 }

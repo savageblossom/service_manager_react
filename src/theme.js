@@ -4,8 +4,8 @@ export default createMuiTheme({
   overrides: {
     MuiFormControl: {
       root: {
-        // flexDirection: "row"
+        
       }
-    }
+    },
   }
 });

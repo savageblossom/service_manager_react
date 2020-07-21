@@ -5,7 +5,10 @@ class Store {
     headerMenu_toggle = () => {this.headerMenu_isToggled = !this.headerMenu_isToggled; }
 
     isMobileView = window.innerWidth <= 860 ? true : false; 
-    setMobileView = () => this.isMobileView = window.innerWidth <= 860 ? true : false;
+    setMobileView = () => {
+        this.isMobileView = window.innerWidth <= 860 ? true : false;
+        console.log(this.isMobileView)
+    }
 }
 
 const storeInstance = new Store()

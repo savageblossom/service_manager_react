@@ -5,6 +5,13 @@ import Logo from './Logo';
 import ButtonBurger from './ButtonBurger';
 
 import {UIStoreContext} from '../../../index';
+import { withStyles } from '@material-ui/styles';
+
+import Menu from '../Menu';
+
+const styles = {
+
+}
 
 const HeaderTopPanel = () => {
     const { isMobileView } = useContext(UIStoreContext);
@@ -17,4 +24,4 @@ const HeaderTopPanel = () => {
     )
 }
 
-export default HeaderTopPanel;
+export default withStyles(styles)(HeaderTopPanel);
