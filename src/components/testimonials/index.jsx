@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Carousel from './Carousel';
+import Button from '../ui/Button';
 const Testimonials = () => {
     return (
         <section className="testimonials">
@@ -12,85 +14,19 @@ const Testimonials = () => {
                             tempor incididunt ut labore et dolore magna</p>
                     </div>
                     <div className="testimonials__btn_container">
-                        <button className="testimonials__get_started">Get Started</button>
+                        {/* <button className="testimonials__get_started">Get Started</button> */}
+                        <Button 
+                            innertext={"Get Started"}
+                            textcolor={'#fff'} 
+                            background={"#061e37"} 
+                            width={"150px"} 
+                            margin={"0 30px 0 0"}
+                        />
                     </div>
                 </div>
 
-                <div id="myCarousel" className="testimonials__carousel carousel slide vert">
-
-                    <ul className="testimonials__carousel_list carousel-inner">
-                        <li className="testimonials__carousel_item carousel-item active">
-                            <div className="testimonials__carousel_flex_container">
-                                <div className="testimonials__carousel_card">
-                                    <div className="testimonials__carousel_portrait">
-                                        <img src="img/testimonials__por1.jpg" alt="portrait1" />
-                                    </div>
-                                    <div className="testimonials__carousel_text-field">
-                                        <h1>
-                                            Rotten Zombie
-                                        </h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                            exercitation ullamco laboris nisi ut aliquip ex ea
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="testimonials__carousel_card">
-                                    <div className="testimonials__carousel_portrait">
-                                        <img src="img/testimonials__por2.jpg" alt="portrait1" />
-                                    </div>
-                                    <div className="testimonials__carousel_text-field">
-                                        <h1>                          
-                                            SsethTzeentach
-                                        </h1>
-                                        <p>
-                                            Hey hey, people dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                            exercitation ullamco laboris nisi ut aliquip ex ea
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="testimonials__carousel_item carousel-item">
-                            <div className="testimonials__carousel_flex_container">
-                                <div className="testimonials__carousel_card">
-                                    <div className="testimonials__carousel_portrait">
-                                        <img src="img/testimonials__por2.jpg" alt="portrait1" />
-                                    </div>
-                                    <div className="testimonials__carousel_text-field">
-                                        <h1>                          
-                                            SsethTzeentach
-                                        </h1>
-                                        <p>
-                                            Hey hey, people dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                            exercitation ullamco laboris nisi ut aliquip ex ea
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="testimonials__carousel_card">
-                                    <div className="testimonials__carousel_portrait">
-                                        <img src="img/testimonials__por1.jpg" alt="portrait1" />
-                                    </div>
-                                    <div className="testimonials__carousel_text-field">
-                                        <h1>
-                                            Rotten Zombie
-                                        </h1>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                            exercitation ullamco laboris nisi ut aliquip ex ea
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <a className="testimonials__carousel_control testimonials__carousel_control--prev" href="#myCarousel" data-slide="prev"><i className="fas fa-angle-down"></i></a>
-                    <a className="testimonials__carousel_control testimonials__carousel_control--next" href="#myCarousel" data-slide="next"><i className="fas fa-angle-up"></i></a>
-                </div>
+                <Carousel />
+                
             </div>
         </section>
     )

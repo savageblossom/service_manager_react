@@ -25,14 +25,12 @@ const BuyNow = props => {
                   background={"#061e37"} 
                   width={"150px"} 
                   margin={"0 30px 0 0"}
-                  disableElevation
                 />
                 <Button 
                   innertext={"Try for free"}
                   textcolor={'#061e37'} 
                   background={"#fff"} 
-                  width={"150px"} 
-                  disableElevation
+                  width={"160px"} 
             />
             </div>
         </div>

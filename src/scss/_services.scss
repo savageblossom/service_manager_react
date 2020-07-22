@@ -1,6 +1,6 @@
 .services {
     @include flex_center;
-    padding-bottom: 84px;
+    padding-bottom: 48px;
 
     &__heading {
         @include heading(95px);
