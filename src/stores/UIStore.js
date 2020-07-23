@@ -7,7 +7,17 @@ class Store {
     isMobileView = window.innerWidth <= 860 ? true : false; 
     setMobileView = () => {
         this.isMobileView = window.innerWidth <= 860 ? true : false;
-        console.log(this.isMobileView)
+    }
+
+    input = {
+        firstName = '',
+        lastName = '',
+        email = '',
+        phone = '',
+        message = ''
+    }
+    setInputProperty = (propertyName, value) => {
+        this.input[`${firstName}`] = value
     }
 }
 
@@ -17,7 +27,10 @@ decorate(storeInstance, {
     headerMenu_isToggled: observable,
     headerMenu_toggle: action,
     isMobileView: observable,
-    setMobileView: action
+    setMobileView: action,
+    // form
+    firstName: observable,
+    setFirstName: action
 })
 
 export default storeInstance;

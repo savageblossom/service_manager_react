@@ -31,7 +31,7 @@ const BuyNow = props => {
                   textcolor={'#061e37'} 
                   background={"#fff"} 
                   width={"160px"} 
-            />
+                />
             </div>
         </div>
         <div className="header__video_container">

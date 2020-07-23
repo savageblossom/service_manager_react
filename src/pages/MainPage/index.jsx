@@ -19,7 +19,7 @@ export default function MainPage() {
                 <Testimonials />
                 <OurTeam /> */}
                 <ContactUs />
-                {/* <Footer /> */}
+                <Footer />
             </>
     )
 }
