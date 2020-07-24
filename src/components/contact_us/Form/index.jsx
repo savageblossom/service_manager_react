@@ -1,43 +1,23 @@
 import React, {useState, useContext} from 'react';
 import Button from '../../ui/Button';   
-import { OutlinedInput, 
-         FormControl, 
-         InputLabel, 
+import { FormControl, 
          makeStyles,
          withStyles,
-         TextField} from '@material-ui/core';
-import { CheckBoxOutlineBlankIcon, CheckBoxIcon  } from '@material-ui/icons';
+         TextField,
+         FormControlLabel,
+         Checkbox,
+         Snackbar} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import {UIStoreContext} from '../../../index';
-import { useEffect } from 'react';
 import {observer} from 'mobx-react'
 
 
 export const Form = observer(props => {
-    const {isMobileView, firstName, setFirstName} = useContext(UIStoreContext);
+    const {isMobileView, setInputProperty, input} = useContext(UIStoreContext);
+    const {firstName, lastName, email, phone, message} = input;
+    const [alertOpened, setAlertOpened] = useState(false);
 
-    const CssFormControl = withStyles({
-        root: {
-            width: isMobileView ? "100%" : "280px",
-            '& label.Mui-focused': {
-            color: '#1de9b6',
-            },
-            '& .MuiInput-underline:after': {
-            borderBottomColor: 'green',
-            },
-            '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'red',
-            },
-            '& fieldset': {
-                borderColor: '#000',
-                },
-                '&.Mui-focused fieldset': {
-                borderColor: '#1de9b6',
-                },
-            },
-        },
-      })(FormControl);
-
+;
     const useStyles = makeStyles((theme) => ({
         root : {
             display: "flex",
@@ -48,144 +28,130 @@ export const Form = observer(props => {
             color: "#061e37",
             fontSize: "14px",
             maxWidth: "600px",
-            
-            "& label": {
-                fontSize: 14,
-                color: "#000",
-                transform: "translate(15px, 18px) scale(1)",
-                fontFamily: "RalewayMedium",
-            },
             "& Button": {
                 margin: "30px 0"
+            },
+            "& .MuiTextField-root": {
+                width: isMobileView ? "100%" : 280,
+                marginBottom: 15,
+                "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    border: "3px solid #1de9b6",
+                }
             }
-        },
-        input: {
-            width: isMobileView ? "100%" : "280px",
-            height: "50px",
-            alignItems: "center",
-            marginBottom: "20px",
-            fontFamily: "RalewayMedium",
-            
         },
         textarea: {
             height: 150,
-            width: "100%",
+            width: "100% !important",
         },
         checkbox: {
             "& span":{
                 fontFamily: "RalewayMedium",
                 fontSize: 15,
-                
             }
-            
         }
-        
     }));
 
-    useEffect(() => {
 
-    }, [])
-    // const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [message, setMessage] = useState('');
-
-    const classes = useStyles();
-
-    const validateInput = () => {
-        
+    const validateInputs = () => {
+        let errorCount = 0
+        Object.keys(input).forEach(e => {
+            if(e == 'email') {
+                const regex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+                if(!regex.test(input[e].value)) {
+                    input[e].error = true;
+                    errorCount++;
+                }
+                else { input[e].error = false; }
+            }
+            else if(Boolean(input[e].value)) { 
+                input[e].error = false;
+            }
+            
+            else {
+                input[e].error = true; 
+                errorCount++;
+            }
+        })
+        console.log(errorCount)
+        return !errorCount ? true : false
     }
     const submitForm = () => {
-
+        if(validateInputs()) {
+            setAlertOpened(true);
+            Object.keys(input).forEach(e => {
+                input[e].value = '';
+            })
+        }
     }
 
+
+    const classes = useStyles();
     return (
-
         <>
-            <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)}/>
-            <TextField
-                required
-                id="filled-required"
-                label="Required"
-                variant="filled"
-                value={firstName} 
-                onChange={e => setFirstName(e.target.value)}
-            />
-            <TextField
-                required
-                id="filled-required"
-                label="Required"
-                variant="filled"
-                value={firstName} 
-                onChange={e => setFirstName(e.target.value)}
-            />
+            <Snackbar 
+              open={alertOpened} 
+              autoHideDuration={4000}
+              onClose={e => setAlertOpened(false)}
+            >
+                <Alert variant='filled' severity="success">
+                    Form has been submitted!
+                </Alert>
+            </Snackbar>
+            <form className={classes.root}>
+                    <TextField
+                        label="First Name"
+                        variant="outlined"
+                        value={firstName.value} 
+                        error={firstName.error}
+                        onChange={e => setInputProperty('firstName', e.target.value)}
+                    />
+                    <TextField
+                        label="Last Name"
+                        variant="outlined"
+                        value={lastName.value} 
+                        error={lastName.error}
+                        onChange={e => setInputProperty('lastName', e.target.value)}
+                    />
+                    <TextField
+                        label="E-mail"
+                        variant="outlined"
+                        value={email.value} 
+                        error={email.error}
+                        onChange={e => setInputProperty('email', e.target.value)}
+                    />
+                    <TextField
+                        label="Phone"
+                        variant="outlined"
+                        value={phone.value} 
+                        error={phone.error}
+                        onChange={e => setInputProperty('phone', e.target.value)}
+                    />
+                    <TextField
+                        label="Message"
+                        variant="outlined"
+                        rows="6"
+                        multiline
+                        className={classes.textarea}
+                        value={message.value} 
+                        error={message.error}
+                        onChange={e => setInputProperty('message', e.target.value)}
+                    />
+                    <FormControlLabel
+                        control={<Checkbox name="subscribe" />}
+                        label="subscribe to the newsletter"
+                        className={classes.checkbox}
+                    />
+                    <Button 
+                        innertext={"Send"}
+                        textcolor={'#fff'} 
+                        background={"#1de9b6"} 
+                        width={"130px"} 
+                        margin={"0 30px 0 0"}
+                        onClick={submitForm}
+                    />
+                
+            </form>
         </>
-
-        // <form className={classes.root}>
-            // <CssFormControl variant="outlined">
-            //     <InputLabel htmlFor="first_name">First Name</InputLabel>
-            //     <OutlinedInput 
-            //       id="first_name"
-            //       label="First Name"
-            //       className={classes.input}
-            //       value={firstName}
-            //       onChange={e => setFirstName(e.target.value)}
-            //     />
-        //     </CssFormControl>
-        //     <CssFormControl variant="outlined">
-        //         <InputLabel htmlFor="last_name">Last Name</InputLabel>
-        //         <OutlinedInput 
-        //           id="last_name" 
-        //           label="Last Name" 
-        //           className={classes.input}
-        //           value={lastName}
-        //           onChange={e => setLastName(e.target.value)}
-        //         />
-        //     </CssFormControl>
-        //     <CssFormControl variant="outlined">
-        //         <InputLabel htmlFor="email">Email</InputLabel>
-        //         <OutlinedInput 
-        //           id="email" 
-        //           label="Email" 
-        //           className={classes.input}
-        //           value={email}
-        //           onChange={e => setEmail(e.target.value)}
-        //         />
-        //     </CssFormControl>
-        //     <CssFormControl variant="outlined">
-        //         <InputLabel htmlFor="phone">Phone</InputLabel>
-        //         <OutlinedInput 
-        //           id="phone" 
-        //           label="Phone" 
-        //           className={classes.input}
-        //           value={phone}
-        //           onChange={e => setPhone(e.target.value)}
-        //         />
-        //     </CssFormControl>
-        //     <CssFormControl className={classes.textarea} variant="outlined">
-        //         <InputLabel htmlFor="phone">Message</InputLabel>
-        //         <OutlinedInput 
-        //           id="phone" 
-        //           label="Phone" 
-        //           rows="6"
-        //           multiline
-        //         />
-        //     </CssFormControl>
-        //     <FormControlLabel
-        //         control={<Checkbox name="subscribe" />}
-        //         label="subscribe to the newsletter"
-        //         className={classes.checkbox}
-        //     />
-        //     <Button 
-        //         innertext={"Send"}
-        //         textcolor={'#fff'} 
-        //         background={"#1de9b6"} 
-        //         width={"130px"} 
-        //         margin={"0 30px 0 0"}
-        //         onClick={submitForm()}
-        //     />
-        // </form>
     )
 
 })
