@@ -7,8 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AccordionData from '../AccordionData';
-import { CssBaseline } from '@material-ui/core';
-import { nodeName } from 'jquery';
 import {UIStoreContext} from '../../../index';
 
 const useStyles = makeStyles((theme) => ({
